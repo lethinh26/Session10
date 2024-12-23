@@ -12,16 +12,25 @@ int main() {
     }
     printf("Nhap gia tri ban muon tim kiem: ");
     scanf("%d", &n);
-    for (int i = 0; i < size; i++) {
-        check = 1;
-        if (arrayInt[i] == n) {
-            printf("%d nam o vi tri %d", n, i);
-            check = 0;
+    int l = 0, r = size-1, res;
+    check = 0;
+    while (l<=r) {
+        int m =  l + (r-l)/2;
+        if (arrayInt[m] == n) {
+            check = 1;
+            res = m;
             break;
+        }else if (arrayInt[m] < n) {
+            l = m + 1;
+        }else {
+            r = m - 1;
         }
     }
+    
     if (check) {
-        printf("%d khong co trong mang", n);
+        printf("%d dang nam o vi tri %d", n, res);
+    }else {
+        printf("%d khong ton tai trong mang", n);
     }
     return 0;
 }
